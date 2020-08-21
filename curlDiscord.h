@@ -55,7 +55,7 @@ inline int sendMessage(const char *webHook,      // Server's webhook
     int rValue = system(command);
     free(command);
 
-    return rValue;
+    return (rValue != 0);
 }
 
 inline int sendMessageData(const char *message)
@@ -91,7 +91,7 @@ inline int sendMessageData(const char *message)
     int rValue = system(command);
     free(command);
 
-    return rValue;
+    return (rValue != 0);
 }
 
 inline void setupDiscord(const char *webHook, 
