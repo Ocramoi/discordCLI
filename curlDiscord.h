@@ -35,14 +35,14 @@ inline int sendMessage(const char *webHook,      // Server's webhook
                        const char *profileImage, // URL to the image to be used as profile in message
                        const char *message)      // Message to be sent
 {
-    char *command = (char*) malloc((119 + 
+    char *command = (char*) malloc((122 + 
                                     strlen(webHook) + 
                                     strlen(userName)+
                                     strlen(profileImage) + 
                                     strlen(message)) * sizeof(char)); // cURL request memory allocation
     
     // builds cURL request
-    strcpy(command, "curl -H \"Content-Type: application/json\" -X POST -d '{\"username\": \"");
+    strcpy(command, "curl -s -H \"Content-Type: application/json\" -X POST -d '{\"username\": \"");
     strcpy(command + strlen(command), userName);
     strcpy(command + strlen(command), "\", \"content\": \"");
     strcpy(command + strlen(command), message);
@@ -71,14 +71,14 @@ inline int sendMessageData(const char *message)
     fgets(userName, DISCORD_BUFFER, dataFile); userName[strlen(userName) - 1] = '\0';
     fgets(profileImage, DISCORD_BUFFER, dataFile); profileImage[strlen(profileImage) - 1] = '\0';
 
-    char *command = (char*) malloc((119 + 
+    char *command = (char*) malloc((122 + 
                                     strlen(webHook) + 
                                     strlen(userName)+
                                     strlen(profileImage) + 
                                     strlen(message)) * sizeof(char)); // cURL request memory allocation
     
     // builds cURL request
-    strcpy(command, "curl -H \"Content-Type: application/json\" -X POST -d '{\"username\": \"");
+    strcpy(command, "curl -s -H \"Content-Type: application/json\" -X POST -d '{\"username\": \"");
     strcpy(command + strlen(command), userName);
     strcpy(command + strlen(command), "\", \"content\": \"");
     strcpy(command + strlen(command), message);
